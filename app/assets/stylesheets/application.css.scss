@@ -17,10 +17,11 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-body { padding-top: 70px; }
+body { padding-top: 70px;
+  padding-bottom: 20px;}
 
 .link_image{
-  width: 35px;
+  height: 35px;
   padding-right: 8px;
   float: right;
 }
