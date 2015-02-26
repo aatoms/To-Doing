@@ -1,9 +1,15 @@
 <div class='container'>
 
-  <b> Description: <%= @task.description %></b>
-  <p> </p>
+  <div class="pull-right">
+    <%= link_to "Edit", edit_task_path, class: "btn btn-info" %>
+  </div>
 
-  <u><%= link_to "Edit", edit_task_path %></u>
-  <u><%= link_to "Back", tasks_path %></u>
+  <h2><%= @task.description %></h2>
+  <hr></hr>
+  <ol class="breadcrumb">
+    <li>
+      <%= link_to "Tasks", tasks_path %>
+    </li>
+  </ol>
 
 </div>
