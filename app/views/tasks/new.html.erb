@@ -1,8 +1,6 @@
-<%= form_for @task do |t| %>
+<div class= "container">
+  <h3> Create a New Task</h3>
 
-  <%= t.label :description %>
-  <%= t.text_field :description %>
+  <%= render partial: "form" %>
 
-  <%= t.submit "New Task" %>
-
-<% end %>
+</div>

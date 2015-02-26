@@ -1,12 +1,9 @@
-<h1>
-    <%= @task.description %>
-</h1>
+<div class='container'>
 
-<%= link_to "Edit", edit_task_path, class: "btn btn-info margin-top-button" %>
+  <b> Description: <%= @task.description %></b>
+  <p> </p>
 
-<%= link_to "Tasks", tasks_path %>
+  <u><%= link_to "Edit", edit_task_path %>
+  <%= link_to "Back", tasks_path %></u>
 
-<li
-  <div class="active">
-    <%= @task.description %>
-</li>
+</div>

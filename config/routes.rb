@@ -4,6 +4,7 @@ Rails.application.routes.draw do
    get '/about' => 'about#index'
    get '/faq' => 'common_questions#index'
    get '/tasks' => 'tasks#index'
+   get '/about' => 'about#index'
 
    resources :tasks
 

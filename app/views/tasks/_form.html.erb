@@ -1,0 +1,15 @@
+<div class='container'>
+
+  <%= form_for @task, html: {class: "form-vertical"} do |f| %>
+
+    <%= f.label :description %>
+    <p></p>
+    <%= f.text_field :description %>
+    <p></p>
+    <%= f.submit "Update Task" %>
+    <p></p>
+    <%= link_to "Show", tasks_path %>
+    <%= link_to "Cancel", tasks_path %>
+
+    <% end %>
+</div>

@@ -1,8 +1,6 @@
-<%= form_for @task do |t| %>
+<div class= "container">
+  <h3> Edit Task</h3>
 
-  <%= t.label :task %>
-  <%= t.text_field :task %>
+  <%= render partial: "form" %>
 
-<%= t.submit "Edit Task" %>
-
-<% end %>
+</div>
