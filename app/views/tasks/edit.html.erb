@@ -1,6 +1,13 @@
 <div class= "container">
-  <h3> Edit Task</h3>
+  <h3> Editing Task</h3>
 
-  <%= render partial: "form" %>
+  <ol class="breadcrumb">
+    <li>
+      <%= link_to "Tasks", tasks_path %>
+    </li>
+    <li class="active"> New Task </li>
+  </ol>
+
+<%= render partial: "form" %>
 
 </div>
