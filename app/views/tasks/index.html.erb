@@ -10,20 +10,44 @@
     <thead>
       <tr>
        <th> Description </th>
+       <th> Due Date </th>
       </tr>
     </thead>
+
     <tbody>
     <% @tasks.each do |tasks| %>
       <tr>
         <td>
-        <%= link_to tasks.description, task_path(tasks) %>
+          <% if tasks.complete %>
+            <u>
+              <s>
+              <%= link_to tasks.description, task_path(tasks) %>
+            </u>
+          </s>
+          <% else %>
+            <u>
+            <%= link_to tasks.description, task_path(tasks) %>
+            </u>
+            <% end %>
+        </td>
+
+        <td>
+          <% if tasks.due_date %>
+            <%= tasks.due_date.strftime("%m/%d/%Y") %>
+          <% end %>
+        </td>
+
+
+        <td>
           <div class= "pull-right">
             <%= link_to "Edit", edit_task_path(tasks), class: "btn btn-info" %>
             <%= link_to "Delete", task_path(tasks), class: "btn btn-danger", method: :delete, data: {confirm: "Are you sure you want to delete?"} %>
           </div>
         </td>
       </tr>
+
       <% end %>
+
     </tbody>
   </table>
 
