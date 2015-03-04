@@ -1,0 +1,22 @@
+<div class='container'>
+  <div class='page-header'>
+    <div class='row'>
+    <%= link_to "Edit", edit_user_path, class: "btn btn-primary pull-right margin-top-button" %>
+      <h1>
+        <%= @user.first_name %>
+        <%= @user.last_name %>
+      </h1>
+    </div>
+  </div>
+
+    <dl class="dl-horizontal">
+      <dt><b> First Name </b></dt>
+      <dd><%= @user.first_name %></dd>
+      <p></p>
+      <dt><b> Last Name </b></dt>
+      <dd><%= @user.last_name %></dd>
+      <p></p>
+      <dt><b> Email </b></dt>
+      <dd><u><%= mail_to @user.email %></u></dd>
+    </dl>
+</div>
