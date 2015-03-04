@@ -1,0 +1,42 @@
+<div class="container">
+  <table class="table">
+    <div class="pull-right">
+      <%= link_to 'New User', new_user_path, class: "btn btn-info margin-top-button"  %>
+    </div>
+    <h1> Users </h1>
+
+  <table class= "table">
+    <thead>
+      <tr>
+       <th> Name </th>
+       <th> Email </th>
+      </tr>
+    </thead>
+
+    <tbody>
+    <% @users.each do |users| %>
+      <tr>
+        <td>
+          <%= link_to users.first_name, user_path(users) %>
+          <%= link_to users.last_name, user_path(users) %>
+        </td>
+        <td>
+          <u>
+          <%= link_to users.email, user_path(users) %>
+          </u>
+        </td>
+
+        <td>
+          <div class= "pull-right">
+            <%= link_to "Edit", edit_user_path(users), class: "btn btn-info" %>
+            <%= link_to "Delete", user_path(users), class: "btn btn-danger", method: :delete, data: {confirm: "Are you sure you want to delete?"} %>
+          </div>
+        </td>
+      </tr>
+
+    <% end %>
+
+    </tbody>
+  </table>
+
+</div>

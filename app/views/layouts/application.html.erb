@@ -1,42 +1,46 @@
-<head>
-  <title>GCamp</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-      <%= link_to("gCamp", root_path, class:"navbar-brand") %>
-    </div>
-  </nav>
+<div class='container'>
+  <head>
+    <title>GCamp</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <%= link_to("gCamp", root_path, class:"navbar-brand") %>
+      </div>
+    </nav>
 
-    <div class="container">
-      <% if flash[:notice] %>
-      <div class="alert alert-success"><%= flash[:notice] %></div>
-      <% end %>
-    </div>
+      <div class="container">
+        <% if flash[:notice] %>
+        <div class="alert alert-success"><%= flash[:notice] %></div>
+        <% end %>
+      </div>
 
-<%= yield %>
-
-
-</body>
-</html>
+  <%= yield %>
 
 
-<footer {padding-left: 20px;} >
+  </body>
+  </html>
 
-  <%= link_to "About", about_path %>
-  |
-  <%= link_to "Terms", terms_path %>
-  |
-  <%= link_to "FAQ", faq_path %>
-  |
-  <%= link_to "Tasks", tasks_path %>
 
-  <%= link_to image_tag('g.png', class: 'link_image'), "https://students.gschool.it/cohorts/8/students/272" %>
-  <%= link_to image_tag('Twitter.png', class: 'link_image'), "https://twitter.com/_aatoms" %>
-  <%= link_to image_tag('GitHub.png', class: 'link_image'), "https://github.com/aatoms" %>
-  <%= link_to image_tag('linked_in.png', class: 'link_image'), "https://www.linkedin.com/pub/austin-adams/89/5b9/82a" %>
+  <footer>
 
-</footer>
+    <%= link_to "About", about_path %>
+    |
+    <%= link_to "Terms", terms_path %>
+    |
+    <%= link_to "FAQ", faq_path %>
+    |
+    <%= link_to "Tasks", tasks_path %>
+    |
+    <%= link_to "Users", users_path %>
+
+    <%= link_to image_tag('g.png', class: 'link_image'), "https://students.gschool.it/cohorts/8/students/272" %>
+    <%= link_to image_tag('Twitter.png', class: 'link_image'), "https://twitter.com/_aatoms" %>
+    <%= link_to image_tag('GitHub.png', class: 'link_image'), "https://github.com/aatoms" %>
+    <%= link_to image_tag('linked_in.png', class: 'link_image'), "https://www.linkedin.com/pub/austin-adams/89/5b9/82a" %>
+
+  </footer>
+</div>
