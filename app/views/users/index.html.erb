@@ -18,13 +18,10 @@
     <% @users.each do |users| %>
       <tr>
         <td>
-          <%= link_to users.first_name, user_path(users) %>
-          <%= link_to users.last_name, user_path(users) %>
+          <%= link_to users.first_name+" "+users.last_name, user_path(users) %>
         </td>
         <td>
-          <u>
           <%= link_to users.email, user_path(users) %>
-          </u>
         </td>
 
         <td>
