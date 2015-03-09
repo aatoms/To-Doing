@@ -21,6 +21,13 @@
             <%= link_to projects.name, project_path(projects) %>
           </u>
         </td>
+
+        <td>
+          <div class= "pull-right">
+            <%= link_to "Edit", edit_project_path(projects), class: "btn btn-info" %>
+            <%= link_to "Delete", project_path(projects), class: "btn btn-danger", method: :delete, data: {confirm: "Are you sure you want to delete?"} %>
+          </div>
+        </td>
       </tr>
       <% end %>
 
