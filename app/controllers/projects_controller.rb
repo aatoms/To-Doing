@@ -29,8 +29,8 @@ class ProjectsController < ApplicationController
   def update
     @project = Project.find(params[:id])
     if @project.update(project_params)
+      flash[:notice] = "Project was successfully updated"
       redirect_to project_path
-      flash[:success] = "Project was successfully edited"
     else
       render :edit
     end
