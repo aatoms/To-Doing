@@ -1,39 +1,40 @@
 <div class='container'>
 
   <%= form_for @user, html: {class: "form-horizontal"} do |f| %>
-
     <%= render partial: 'shared/errors', locals: {object: @user} %>
-
-    <div class="form-group">
-      <%= f.label :first_name, class: "col-md-2 control-label" %>
-      <div class="col-md-4">
-      <%= f.text_field :first_name, class: "form-control", placeholder: "First Name" %>
+    <% label_field_types = {
+      first_name: :text_field,
+      last_name: :text_field,
+      email: :email_field,
+      password: :password_field,
+      password_confirmation: :password_field } %>
+    <% label_field_types.each do |label, field| %>
+      <div class="form-group">
+        <div class="col-md-2">
+          <%= f.label label, class: 'control-label' %>
+        </div>
+        <div class='col-md-4'>
+          <%= f.send(field, label, class: 'form-control') %>
+        </div>
       </div>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :last_name, class: "col-md-2 control-label" %>
-      <div class="col-md-4">
-      <%= f.text_field :last_name, class: "form-control", placeholder: "Last Name" %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :email, class: "col-md-2 control-label" %>
-      <div class="col-md-4">
-      <%= f.email_field :email, class: "form-control", placeholder: "Email" %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <div class="col-md-offset-2 col-md-6">
-      <%= f.submit class: "btn btn-primary" %>
-      <%= link_to "Cancel", users_path, class: "btn btn-default" %>
-      <% unless @user.new_record? %>
-      <%= link_to "Delete", user_path(@user), class: "btn btn-danger", method: :delete, data: {confirm: "Are you sure you want to delete this?"} %>
-      </div>
-    </div>
-
     <% end %>
+
+    <div class="form-group">
+      <div class="col-md-offset-2 col-md-10">
+        <%= f.submit class: 'btn btn-primary' %>
+        <%= link_to 'Cancel', users_path, class: 'btn btn-default' %>
+      </div>
+    </div>
   <% end %>
+
+  <% if params[:action] == "edit" %>
+  <div class="row">
+    <div class="col-md-offset-2 col-md-4">
+      <div class="well text-center">
+        <%= link_to "Delete User", user_path(@user), method: :delete, data: {comfirm: "Are you sure?"}, class: 'btn btn-danger' %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
 </div>
