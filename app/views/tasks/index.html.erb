@@ -1,32 +1,36 @@
 <div class="container">
   <div class="page-header">
     <div class="pull-right">
-      <%= link_to 'New Task', new_task_path, class: "btn btn-info"  %>
+      <h1>
+        <%= link_to 'New Task', new_project_task_path, class: "btn btn-info"  %>
+      </h1>
     </div>
-    <h1> Tasks </h1>
+      <ol class='breadcrumb'>
+         <li><%= link_to "Projects", projects_path %> / <%= link_to @project.name, project_path(@project) %> / Tasks </li>
+      </ol>
   </div>
 
   <table class= "table">
     <thead>
       <tr>
        <th> Description </th>
-       <th> Due Date </th>
+       <th align= 'left'>Due Date</th>
       </tr>
     </thead>
 
     <tbody>
-    <% @tasks.each do |tasks| %>
+    <% @project.tasks.each do |tasks| %>
       <tr>
         <td>
           <% if tasks.complete %>
             <u>
               <s>
-              <%= link_to tasks.description, task_path(tasks) %>
+              <%= link_to tasks.description, project_task_path(@project, tasks) %>
             </u>
           </s>
           <% else %>
             <u>
-            <%= link_to tasks.description, task_path(tasks) %>
+            <%= link_to tasks.description, project_task_path(@project, tasks) %>
             </u>
             <% end %>
         </td>
@@ -40,8 +44,8 @@
 
         <td>
           <div class= "pull-right">
-            <%= link_to "Edit", edit_task_path(tasks), class: "btn btn-info" %>
-            <%= link_to "Delete", task_path(tasks), class: "btn btn-danger", method: :delete, data: {confirm: "Are you sure you want to delete?"} %>
+            <%= link_to "Edit", edit_project_task_path(@project, tasks), class: "btn btn-info" %>
+            <%= link_to "Delete", project_task_path(@project, tasks), class: "btn btn-danger", method: :delete, data: {confirm: "Are you sure you want to delete?"} %>
           </div>
         </td>
       </tr>

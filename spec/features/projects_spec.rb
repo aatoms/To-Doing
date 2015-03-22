@@ -2,6 +2,7 @@ require 'rails_helper'
 
 feature 'Projects' do
   before do
+    sign_in
     Project.create(name: 'Test Project')
   end
 
