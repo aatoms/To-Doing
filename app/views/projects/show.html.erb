@@ -1,7 +1,10 @@
 <div class='container'>
 
     <div class='row'>
-      <%= link_to "Edit", edit_project_path, class: 'btn btn-info pull-right margin-top-button' %>
+      <div class='pull-right'>
+        <%= link_to "Delete", project_path, method: :delete, data:{confirm: "Are you sure?"}, class: 'btn btn-danger pull-right margin-top-button' %>
+        <%= link_to "Edit", edit_project_path, class: 'btn btn-info pull-right margin-top-button' %>
+      </div>
       <h1>
         <%= @project.name %>
       </h1>
@@ -10,7 +13,10 @@
   <hr></hr>
   <ol class="breadcrumb">
     <li>
-      <%= link_to "Projects", projects_path %>
+      <%= link_to "Projects", projects_path %> / <%= @project.name %>
     </li>
   </ol>
+  <%= link_to pluralize(@project.tasks.count, 'task'), project_tasks_path(@project) %>
+  <p>
+  <p>
 </div>
