@@ -1,40 +1,25 @@
 <div class='container'>
-  <div class='row'>
-    <div class='col-md-10'>
-      <h2>
-        <% if @task.complete == true %>
-        <s>
-          <%= @task.description %>
-        </s>
-        <% else %>
-        <%= @task.description %>
-        <% end %>
-      </h2>
-      <h2>
-        <% if @task.due_date == true %>
-        <s>
-          <%= "Due On:" %>
-          <%= @task.due_date %>
-        </s>
-        <% else %>
-        <%= "Due On:" %>
-        <%= @task.due_date.strftime('%m/%d/%Y') %>
-        <% end %>
-      </h2>
+  <h1 class='page-header'>
+    <% if @task.complete == true %>
+      <s><%= @task.description %></s>
+    <% else %>
+      <%= @task.description %>
+    <% end %>
+    <div class= "pull-right">
+      <%= link_to 'Edit', edit_project_task_path(@project, @task), class: "btn btn-info" %>
     </div>
-
-    <div class="pull-right">
-      <div class='col-md-2'>
-      <%= link_to "Edit", edit_project_task_path, class: "btn btn-info margin-top-button" %>
-      </div>
-    </div>
-  </div>
-
-      <hr></hr>
-      <ul class="breadcrumb">
-        <li>
-          <%= link_to "Tasks", tasks_path %>
-        </li>
-      </ul>
-
+  </h1>
+  <ol class = "breadcrumb">
+    <li> <%= link_to "Projects", projects_path %></li>
+    <li> <%= link_to @project.name, project_path %></li>
+    <li> <%= Task %></li>
+  </ol>
+  <strong>
+    Due On:
+  </strong>
+    <% if @task.due_date %>
+      <%= @task.due_date.strftime("%m/%d/%Y") %>
+    <% end %>
+    <p>
+    <p>
 </div>
