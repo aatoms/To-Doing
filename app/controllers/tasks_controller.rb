@@ -31,10 +31,10 @@ class TasksController < ApplicationController
   end
 
   def update
-    task = Task.find(params[:id])
+    @task = @project.tasks.find(params[:id])
     if @task.update(task_params)
       flash[:notice] = "Task was successfully updated"
-      redirect_to project_task_path(@project, task)
+      redirect_to project_task_path(@project, @task)
     else
       render :edit
     end

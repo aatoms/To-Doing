@@ -1,13 +1,13 @@
-<div class= "container">
-  <h3> Edit Task</h3>
+<div class= 'container'>
+  <h1> Edit Task</h1>
 
-  <ol class="breadcrumb">
-    <li>
-      <%= link_to "Tasks", tasks_path %>
-    </li>
-    <li class="active"> New Task </li>
+  <ol class='breadcrumb'>
+    <li><%= link_to 'Projects', project_path %></li>
+    <li><%= link_to @project.name, project_path(@project) %></li>
+    <li><%= link_to @task.description, project_task_path(@project, @task) %></li>
+    <li class="active"> Edit Task </li>
   </ol>
 
-<%= render partial: "form" %>
+  <%= render partial: "form" %>
 
 </div>
