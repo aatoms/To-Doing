@@ -2,10 +2,10 @@
   <div class='form-group'>
     <div class='col-sm-offset-2 col-sm-6'>
       <div class='alert alert-danger'>
-        <h4><%= pluralize(object.errors.count, "error") %> <%= "prohibited this from being saved :"%> </h4>
+        <h4><%= pluralize(object.errors.count, "error") %> <%= "prohibited this from being saved :" > </h4>
           <ul><% object.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-            <% end %>
+                <li><%= message %></li>
+              <% end %>
           </ul>
       </div>
     </div>
