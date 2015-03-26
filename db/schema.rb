@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20150326141532) do
   create_table "memberships", force: :cascade do |t|
     t.integer "user_id",    null: false
     t.integer "project_id", null: false
-    t.integer "role"
+    t.string  "role"
   end
 
   create_table "projects", force: :cascade do |t|

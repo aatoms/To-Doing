@@ -3,7 +3,7 @@ class CreateMemberships < ActiveRecord::Migration
     create_table :memberships do |t|
       t.integer :user_id, null: false
       t.integer :project_id, null: false
-      t.integer :role
+      t.string :role
     end
   end
 end
