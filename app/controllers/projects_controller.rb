@@ -1,5 +1,4 @@
 class ProjectsController < ApplicationController
-  # before_action :set_project, only: [:edit, :show, :update]
   before_action :auth
 
   def index
@@ -49,9 +48,5 @@ class ProjectsController < ApplicationController
   def project_params
     params.require(:project).permit(:name)
   end
-
-  # def set_project
-  #   @project = Project.find(params[:id])
-  # end
 
 end

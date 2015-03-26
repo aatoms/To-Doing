@@ -12,12 +12,9 @@ require 'rails_helper'
       expect(current_path).to eq '/'
       click_on 'Projects'
       expect(page).to have_content('Projects')
-      click_on 'Tasks'
-      expect(page).to have_content('Tasks')
       click_on 'Users'
       expect(page).to have_content('Users')
     end
-
 
     scenario 'Users can signout' do
       visit root_path
