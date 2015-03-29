@@ -18,7 +18,7 @@
   </ol>
   <%= link_to pluralize(@project.tasks.count, 'Task'), project_tasks_path(@project) %>
   <br>
-  <%= link_to pluralize(@project.users.count, 'Member'), project_memberships_path(@project) %>
+  <%= link_to pluralize(@project.memberships.count, 'Membership'), project_memberships_path(@project) %>
 
   <p>
   <p>

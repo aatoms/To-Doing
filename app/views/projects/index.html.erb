@@ -11,6 +11,7 @@
       <tr>
        <th>Name</th>
        <th>Tasks</th>
+       <th>Memberships</th>
       </tr>
     </thead>
 
@@ -23,7 +24,9 @@
         <td>
           <u><%= link_to projects.tasks.count, project_tasks_path(projects) %></u>
         </td>
-
+        <td>
+          <u><%= link_to projects.memberships.count, project_memberships_path(projects) %></u>
+        </td>
 
         <td>
           <div class= "pull-right">
