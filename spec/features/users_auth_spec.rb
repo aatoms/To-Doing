@@ -2,7 +2,7 @@ require 'rails_helper'
 
   feature 'Users' do
     before do
-      new_user
+      @user = create_user
     end
 
     scenario 'can sign up' do
@@ -22,8 +22,8 @@ require 'rails_helper'
     end
 
     scenario 'that are logged in can see projects, tasks, and users' do
-      sign_in
-      expect(current_path).to eq '/'
+      visit root_path
+      sign_in(@user)
       click_on 'Projects'
       expect(page).to have_content('Projects')
       click_on 'Users'
@@ -33,7 +33,7 @@ require 'rails_helper'
 
     scenario 'can signout' do
       visit root_path
-      sign_in
+      sign_in(@user)
       click_on 'Sign Out'
       expect(page).to have_content('You have successfully logged out')
       expect(page).to have_no_content('Sign Out')
@@ -41,7 +41,7 @@ require 'rails_helper'
     end
 
     scenario 'can sign in with valid credentials' do
-      sign_in
+      sign_in(@user)
       expect(page).to have_content("You have successfully logged in")
       expect(current_path).to eq '/'
     end

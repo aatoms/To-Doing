@@ -1,14 +1,11 @@
 require 'rails_helper'
 
   feature 'Users' do
-
-
     before do
       sign_in
     end
 
     scenario 'logged in users can see project, tasks, and users' do
-
       expect(current_path).to eq '/'
       click_on 'Projects'
       expect(page).to have_content('Projects')
@@ -30,7 +27,5 @@ require 'rails_helper'
       expect(page).to have_content("first last")
       expect(current_path).to eq '/'
     end
-
-
-
+    
   end
