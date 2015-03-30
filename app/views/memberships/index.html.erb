@@ -33,7 +33,7 @@
       </div>
 
       <div class='form-group'>
-        <%= f.collection_select(:role, Membership::Role, :to_s, :to_s, {}, {class: 'form-control'}) %>
+        <%= f.select(:role, [["Owner", 'owner'], ["Member", 'member']], {}, {class: 'form-control'}) %>
       </div>
 
       <div class='form-group'>
