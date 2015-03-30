@@ -9,7 +9,6 @@ class CommentsController < ApplicationController
   def create
     @comment = @task.comments.new(comment_params)
     if @comment.save
-      flash[:notice] = "Comment Noted"
       redirect_to project_task_path(@task.project.id, @task)
     else
       redirect_to project_task_path(@task.project.id, @task)

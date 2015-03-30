@@ -45,7 +45,7 @@
         <td>
           <div class= "pull-right">
             <%= link_to "Edit", edit_project_task_path(@project, tasks), class: "btn btn-info" %>
-            <%= link_to "Delete", project_task_path(@project, tasks), class: "btn btn-danger", method: :delete, data: {confirm: "Are you sure you want to delete?"} %>
+            <%= link_to "", project_task_path(@project, tasks), method: :delete, class: 'glyphicon glyphicon-remove' %>
           </div>
         </td>
       </tr>
