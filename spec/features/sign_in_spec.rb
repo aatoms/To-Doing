@@ -6,7 +6,7 @@ require 'rails_helper'
     end
 
     scenario 'logged in users can see project, tasks, and users' do
-      expect(current_path).to eq '/'
+      expect(current_path).to eq projects_path
       click_on 'Projects'
       expect(page).to have_content('Projects')
       click_on 'Users'
@@ -25,7 +25,7 @@ require 'rails_helper'
     scenario 'Users can sign in with valid credentials' do
       expect(page).to have_content("You have successfully logged in")
       expect(page).to have_content("first last")
-      expect(current_path).to eq '/'
+      expect(current_path).to eq projects_path
     end
-    
+
   end

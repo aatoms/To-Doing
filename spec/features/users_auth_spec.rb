@@ -43,7 +43,7 @@ require 'rails_helper'
     scenario 'can sign in with valid credentials' do
       sign_in(@user)
       expect(page).to have_content("You have successfully logged in")
-      expect(current_path).to eq '/'
+      expect(current_path).to eq projects_path
     end
 
 end
