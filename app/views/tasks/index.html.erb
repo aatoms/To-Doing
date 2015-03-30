@@ -30,8 +30,9 @@
           <% else %>
             <u>
             <%= link_to tasks.description, project_task_path(@project, tasks) %>
+            <div class='badge'><%= link_to tasks.comments.count %></div>
             </u>
-            <% end %>
+          <% end %>
         </td>
 
         <td>
