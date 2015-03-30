@@ -1,6 +1,6 @@
 namespace :cleanup do
   desc 'Removes all memberships when user is deleted'
-  task bye≥,m?">bcv xΩw1\AQZ": :environment do
+  task bye: :environment do
       existing_users = User.pluck(:id)
       Membership.where.not(user_id: existing_users).destroy_all
     end
