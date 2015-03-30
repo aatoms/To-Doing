@@ -1,0 +1,13 @@
+class CommentsController < ApplicationController
+  before_action :find_set_task
+
+  def index
+    @comments = @task.comments.all
+    @comment = @task.comment.new
+  end
+
+  def comment_params
+    params.require(:comment).permit(:content).merge(user_id: current_user.id)
+  end
+
+end
