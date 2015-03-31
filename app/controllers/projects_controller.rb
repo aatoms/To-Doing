@@ -16,7 +16,7 @@ class ProjectsController < PrivateController
     if @project.save
       Membership.create!(project_id: @project.id, user_id: current_user.id, role: 1)
       flash[:notice] = "Project was successfully created"
-      redirect_to projects_path
+      redirect_to project_tasks_path(@project, @task)
     else
       render :new
     end
