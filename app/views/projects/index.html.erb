@@ -24,13 +24,7 @@
         <td>
           <u><%= link_to project.tasks.count, project_tasks_path(project) %></u>
         </td>
-
-        <td>
-          <div class= "pull-right">
-            <%= link_to "Edit", edit_project_path(project), class: "btn btn-info" %>
-            <%= link_to "Delete", project_path(project), class: "btn btn-danger", method: :delete, data: {confirm: "Are you sure you want to delete?"} %>
-          </div>
-        </td>
+        <td></td>
       </tr>
       <% end %>
 
