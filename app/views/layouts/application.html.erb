@@ -37,7 +37,8 @@
 
 
 
-      <footer>
+      <footer class='container'>
+      <hr>
       <% unless current_user %>
         <%= link_to "About", about_path %>
         |
@@ -60,6 +61,7 @@
         <%= link_to image_tag('GitHub.png', class: 'link_image'), "https://github.com/aatoms" %>
         <%= link_to image_tag('linked_in.png', class: 'link_image'), "https://www.linkedin.com/pub/austin-adams/89/5b9/82a" %>
       </footer>
+      </hr>
     </body>
   </html>
 </div>

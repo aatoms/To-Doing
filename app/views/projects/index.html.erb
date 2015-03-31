@@ -19,7 +19,7 @@
     <% @projects.each do |projects| %>
       <tr>
         <td>
-          <u><%= link_to projects.name, project_path(projects) %></u>
+          <u><%= link_to projects.name, projects_path(@project_id) %></u>
         </td>
         <td>
           <u><%= link_to projects.tasks.count, project_tasks_path(projects) %></u>

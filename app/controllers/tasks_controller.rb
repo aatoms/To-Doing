@@ -1,6 +1,7 @@
-class TasksController < ApplicationController
+class TasksController < PrivateController
   before_action :find_set_project
   before_action :auth
+  before_action :project_auth, only: [:edit, :show, :update, :destroy
 
   def index
     @tasks = @project.tasks
@@ -48,6 +49,13 @@ class TasksController < ApplicationController
   end
 
   private
+
+  def project_auth
+    unless Membership.where(project_id: @prject.id).include?(current_user.memberships.find_by(project_id: @project.id))
+      flash[:notice] = "You do not have access to that project"
+      redirect_to projects_path
+    end
+  end
 
   def find_set_project
     @project = Project.find(params[:project_id])

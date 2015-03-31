@@ -1,4 +1,5 @@
 class AuthenticationController < ApplicationController
+  skip_before_action :auth
 
   def new
 

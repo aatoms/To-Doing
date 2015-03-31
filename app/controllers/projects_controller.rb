@@ -1,5 +1,7 @@
-class ProjectsController < ApplicationController
+class ProjectsController < PrivateController
   before_action :auth
+  before_action :set_project, only: [:edit, :show, :update]
+  before_action :project_auth, only: [:edit, :show, :update, :destroy]
 
   def index
     @projects = Project.all
@@ -12,6 +14,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     if @project.save
+      Membership.create!(project_id: @project.id, user_id: current_user.id, role: 1)
       flash[:notice] = "Project was successfully created"
       redirect_to projects_path
     else
@@ -44,6 +47,13 @@ class ProjectsController < ApplicationController
   end
 
   private
+
+  def project_auth
+    unless Membership.where(project_id: @prject.id).include?(current_user.memberships.find_by(project_id: @project.id))
+      flash[:notice] = "You do not have access to that project"
+      redirect_to projects_path
+    end
+  end
 
   def project_params
     params.require(:project).permit(:name)
