@@ -9,29 +9,26 @@
   <table class= "table">
     <thead>
       <tr>
-       <th>Name</th>
-       <th>Tasks</th>
-       <th>Memberships</th>
+        <th>Name</th>
+        <th>Tasks</th>
+        <th></th>
       </tr>
     </thead>
 
     <tbody>
-    <% @projects.each do |projects| %>
+    <% @projects.each do |project| %>
       <tr>
         <td>
-          <u><%= link_to projects.name, projects_path(@project_id) %></u>
+          <u><%= link_to project.name, project_path(project) %></u>
         </td>
         <td>
-          <u><%= link_to projects.tasks.count, project_tasks_path(projects) %></u>
-        </td>
-        <td>
-          <u><%= link_to projects.memberships.count, project_memberships_path(projects) %></u>
+          <u><%= link_to project.tasks.count, project_tasks_path(project) %></u>
         </td>
 
         <td>
           <div class= "pull-right">
-            <%= link_to "Edit", edit_project_path(projects), class: "btn btn-info" %>
-            <%= link_to "Delete", project_path(projects), class: "btn btn-danger", method: :delete, data: {confirm: "Are you sure you want to delete?"} %>
+            <%= link_to "Edit", edit_project_path(project), class: "btn btn-info" %>
+            <%= link_to "Delete", project_path(project), class: "btn btn-danger", method: :delete, data: {confirm: "Are you sure you want to delete?"} %>
           </div>
         </td>
       </tr>

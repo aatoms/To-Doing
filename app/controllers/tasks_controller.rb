@@ -1,7 +1,8 @@
 class TasksController < PrivateController
-  before_action :find_set_project
+  before_action :set_project
   before_action :auth
-  before_action :project_auth, only: [:edit, :show, :update, :destroy
+  before_action :project_auth, only: [:edit, :show, :update, :destroy]
+  before_action :set_task, only: [:edit, :show, :update, :destroy]
 
   def index
     @tasks = @project.tasks
@@ -9,7 +10,7 @@ class TasksController < PrivateController
   end
 
   def new
-    @task = @project.tasks.new
+    @task = Task.new
   end
 
   def show
@@ -50,14 +51,18 @@ class TasksController < PrivateController
 
   private
 
+  def set_task
+    @task = @project.tasks.find(params[:id])
+  end
+
   def project_auth
-    unless Membership.where(project_id: @prject.id).include?(current_user.memberships.find_by(project_id: @project.id))
+    if current_user.memberships.find_by(project_id: @project.id) == nil
       flash[:notice] = "You do not have access to that project"
       redirect_to projects_path
     end
   end
 
-  def find_set_project
+  def set_project
     @project = Project.find(params[:project_id])
   end
 

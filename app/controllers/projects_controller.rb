@@ -1,6 +1,6 @@
 class ProjectsController < PrivateController
   before_action :auth
-  before_action :set_project, only: [:edit, :show, :update]
+  before_action :set_project, only: [:edit, :show, :update, :destroy]
   before_action :project_auth, only: [:edit, :show, :update, :destroy]
 
   def index
@@ -23,15 +23,12 @@ class ProjectsController < PrivateController
   end
 
   def edit
-    @project = Project.find(params[:id])
   end
 
   def show
-    @project = Project.find(params[:id])
   end
 
   def update
-    @project = Project.find(params[:id])
     if @project.update(project_params)
       flash[:notice] = "Project was successfully updated"
       redirect_to project_path
@@ -48,8 +45,12 @@ class ProjectsController < PrivateController
 
   private
 
+  def set_project
+    @project = Project.find(params[:id])
+  end
+
   def project_auth
-    unless Membership.where(project_id: @prject.id).include?(current_user.memberships.find_by(project_id: @project.id))
+    if current_user.memberships.find_by(project_id: @project.id) == nil
       flash[:notice] = "You do not have access to that project"
       redirect_to projects_path
     end
