@@ -10,6 +10,7 @@
       <tr>
        <th> Name </th>
        <th> Email </th>
+       <th></th>
       </tr>
     </thead>
 
@@ -19,18 +20,19 @@
         <td>
           <%= link_to users.first_name+" "+users.last_name, user_path(users) %>
         </td>
-        <td>
-          <%= link_to users.email, user_path(users) %>
-        </td>
-
+        <%  if users == current_user || (users.projects & current_user.projects).any? %>
+          <td><%= mail_to users.email %></td>
+        <% else %>
+          <td></td>
+        <% end %>
         <td>
           <div class= "pull-right">
-            <%= link_to "Edit", edit_user_path(users), class: "btn btn-info" %>
-            <%= link_to "Delete", user_path(users), class: "btn btn-danger", method: :delete, data: {confirm: "Are you sure you want to delete?"} %>
+            <% if users == current_user %>
+              <%= link_to "Edit", edit_user_path(users) %>
+            <% end %>
           </div>
         </td>
       </tr>
-
     <% end %>
 
     </tbody>

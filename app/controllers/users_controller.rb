@@ -1,5 +1,8 @@
 class UsersController < PrivateController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :auth
+
+
   def index
     @users = User.all
   end
