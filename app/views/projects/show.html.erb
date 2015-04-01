@@ -1,7 +1,9 @@
 <div class='container'>
   <div class='page-header'>
     <div class='pull-right'>
-      <%= link_to "Edit", edit_project_path, class: 'btn btn-info' %>
+      <% if current_user.memberships.find_by(project_id: @project).role == "Owner" %>
+        <%= link_to "Edit", edit_project_path, class: 'btn btn-info' %>
+      <% end %>
     </div>
     <h1><%= @project.name %></h1>
   </div>
@@ -27,9 +29,9 @@
   </div>
   <br>
 
-  <% if current_user.memberships.find_by(project_id: (@project)).role == "owner" %>
+  <% if current_user.memberships.find_by(project_id: (@project)).role == "Owner" %>
     <div class='well'>
-      <h2> Delete </h2>
+      <h2> Delete Project </h2>
         <%= "Deleting this project will also delete #{pluralize(@project.memberships.count, "membership")}, #{pluralize(@project.tasks.count, "task")} and associated comments" %><br><br>
         <%= link_to "Delete", project_path, method: :delete, data:{confirm: "Are you sure?"}, class: 'btn btn-danger' %>
     </div>
