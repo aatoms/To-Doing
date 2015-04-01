@@ -2,6 +2,7 @@ class ProjectsController < PrivateController
   before_action :auth
   before_action :set_project, only: [:edit, :show, :update, :destroy]
   before_action :project_auth, only: [:edit, :show, :update, :destroy]
+  before_action :ensure_owner, only: [:edit, :update, :destroy]
 
   def index
     @projects = Project.all

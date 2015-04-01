@@ -13,18 +13,4 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def auth
-   unless current_user
-     flash[:danger] = "You must sign in"
-     redirect_to sign_in_path
-   end
- end
-
-  def ensure_member
-    if !current_user.projects.include?(Project.find(params[:id]))
-      flash[:notice] = "You don't have access to that project!"
-      redirect_to projects_path
-    end
-  end
-
 end

@@ -26,9 +26,12 @@
     <% end %>
   </div>
   <br>
-  <div class='well'>
-    <h2> Delete </h2>
-      <%= "Deleting this project will also delete #{pluralize(@project.memberships.count, "membership")}, #{pluralize(@project.tasks.count, "task")} and associated comments" %><br><br>
-      <%= link_to "Delete", project_path, method: :delete, data:{confirm: "Are you sure?"}, class: 'btn btn-danger' %>
-  </div>
+
+  <% if current_user.memberships.find_by(project_id: (@project)).role == "owner" %>
+    <div class='well'>
+      <h2> Delete </h2>
+        <%= "Deleting this project will also delete #{pluralize(@project.memberships.count, "membership")}, #{pluralize(@project.tasks.count, "task")} and associated comments" %><br><br>
+        <%= link_to "Delete", project_path, method: :delete, data:{confirm: "Are you sure?"}, class: 'btn btn-danger' %>
+    </div>
+  <% end %>
 </div>

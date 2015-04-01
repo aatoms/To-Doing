@@ -1,6 +1,6 @@
 class MembershipsController < PrivateController
   before_action :find_set_project
-  before_action :ensure_member
+  before_action :project_auth
 
   def index
     @memberships = @project.memberships
@@ -46,6 +46,12 @@ class MembershipsController < PrivateController
 
   private
 
+  def project_auth
+    if current_user.memberships.find_by(project_id: @project.id) == nil
+      flash[:warning] = "You do not have access to that project"
+      redirect_to projects_path
+    end
+  end
 
   def find_set_project
     @project = Project.find(params[:project_id])
