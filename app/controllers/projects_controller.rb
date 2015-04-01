@@ -15,7 +15,7 @@ class ProjectsController < PrivateController
   def create
     @project = Project.new(project_params)
     if @project.save
-      Membership.create!(project_id: @project.id, user_id: current_user.id, role: 1)
+      Membership.create!(project_id: @project.id, user_id: current_user.id, role: "Owner")
       flash[:notice] = "Project was successfully created"
       redirect_to project_tasks_path(@project, @task)
     else
@@ -52,7 +52,7 @@ class ProjectsController < PrivateController
 
   def project_auth
     if current_user.memberships.find_by(project_id: @project.id) == nil
-      flash[:notice] = "You do not have access to that project"
+      flash[:danger] = "You do not have access to that project"
       redirect_to projects_path
     end
   end
