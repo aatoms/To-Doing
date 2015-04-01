@@ -11,56 +11,77 @@
     </ol>
   </div>
 
-  <div class='row'>
-    <div class='col-md-6'>
-      <% if @membership.errors.any? %>
-        <div class='alert alert-danger', role = 'alert'>
-          <h4> <%= pluralize(@membership.errors.count, 'error') %> prohibited this form from being saved: </h4>
-              <ul> <% @membership.errors.full_messages.each do |message| %>
-            <li> <%= message %> </li>
-            <% end %>
-          </ul>
+  <% if current_user.memberships.find_by(project_id: @project).role == "Owner" %>
+    <div class='row'>
+      <div class='col-md-6'>
+        <% if @membership.errors.any? %>
+          <div class='alert alert-danger', role = 'alert'>
+            <h4> <%= pluralize(@membership.errors.count, 'error') %> prohibited this form from being saved: </h4>
+                <ul> <% @membership.errors.full_messages.each do |message| %>
+              <li> <%= message %> </li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class='well'>
+      <%= form_for [@project, @membership], html:{class: 'form-inline'} do |f| %>
+        <div class='form-group'>
+          <%= f.collection_select(:user_id, User.all, :id, :full_name, {prompt: "Please select a User..."}, {class: 'form-control'}) %>
+        </div>
+        <div class='form-group'>
+          <%= f.collection_select(:role, Membership::ROLES, :to_s, :to_s, {}, {class: 'form-control'}) %>
+        </div>
+        <div class='form-group'>
+          <%= f.submit "Add New Member", class: 'btn btn-primary' %>
         </div>
       <% end %>
     </div>
-  </div>
 
-  <div class='well'>
-    <%= form_for [@project, @membership], html:{class: 'form-inline'} do |f| %>
-
-      <div class='form-group'>
-        <%= f.collection_select(:user_id, User.all, :id, :full_name, {prompt: "Please select a User..."}, {class: 'form-control'}) %>
-      </div>
-
-      <div class='form-group'>
-        <%= f.select(:role, [["Owner", 'owner'], ["Member", 'member']], {}, {class: 'form-control'}) %>
-      </div>
-
-      <div class='form-group'>
-        <%= f.submit "Add New Member", class: 'btn btn-primary' %>
-      </div>
-
-    <% end %>
-  </div>
-
-  <div class='row'>
-    <div class='col-md-6'>
-      <table class='table'>
-        <% @project.memberships.each do |u| %>
-          <tr>
-            <% if u.user.present? && u.id.present? %>
-              <%= form_for [@project, u], html: {class: 'form-incline'} do |f| %>
+    <div class='row'>
+      <div class='col-md-6'>
+        <table class='table'>
+          <% @project.memberships.each do |u| %>
+            <tr>
+              <% if u.id.present? %>
+                <%= form_for [@project, u], html: {class: 'form-incline'} do |f| %>
                   <td> <%= link_to u.user.full_name, user_path(u.user), class: 'pull-left' %> </td>
-                  <td> <%= f.select(:role, [["Owner", 'owner'], ["Member", 'member']], {}, {class: 'form-control'}) %></td>
+                  <td> <%= f.collection_select(:role, Membership::ROLES, :to_s, :to_s, {}, {class: 'form-control'}) %></td>
                   <td> <%= f.submit 'Update', class: 'btn btn-info' %></td>
-                  <td> <%= link_to "", project_membership_path(@project, u), method: :delete, class:'glyphicon glyphicon-remove' %>
+                  <% if u.role == "Owner" && @project.memberships.where(role: "Owner").count == 1 %>
+                    <td> You are the last owner </td>
+                  <% else %>
+                    <td> <%= link_to "", project_membership_path(@project, u), method: :delete, class:'glyphicon glyphicon-remove' %> </td>
+                  <% end %>
+                <% end %>
               <% end %>
-            <% end %>
-          </tr>
-        <% end %>
-      </table>
+            </tr>
+          <% end %>
+        </table>
+      </div>
     </div>
-  </div>
 
-
+  <% else %>
+    <div class='row'>
+      <div class='col-md-6'>
+        <table class='table'>
+          <% @project.memberships.each do |u| %>
+            <tr>
+              <% if u.id.present? %>
+                <td> <%= link_to u.user.full_name, user_path(u.user), class: 'pull-left' %> </td>
+                <td> <%= u.role %> </td>
+                <% if current_user.memberships.include?(@membership) %>
+                  <td> <%= link_to "", project_membership_path(@project, u), method: :delete, class:'glyphicon glyphicon-remove' %>
+                  <% else %>
+                <td></td>
+                <% end %>
+              <% end %>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  <% end %>
 </div>
