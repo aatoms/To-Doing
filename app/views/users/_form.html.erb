@@ -19,6 +19,15 @@
       </div>
     <% end %>
 
+    <% if current_user.admin == true %>
+      <div class='form-group'>
+        <div class='col-sm-offset-2 col-md-5'>
+          <%= f.check_box :admin %>
+          <%= f.label "Admin" %>
+        </div>
+      </div>
+  <% end %>
+
     <div class="form-group">
       <div class="col-md-offset-2 col-md-10">
         <%= f.submit class: 'btn btn-primary' %>
@@ -27,14 +36,14 @@
     </div>
   <% end %>
 
-  <% if params[:action] == "edit" %>
-  <div class="row">
-    <div class="col-md-offset-2 col-md-4">
-      <div class="well text-center">
-        <%= link_to "Delete User", user_path(@user), method: :delete, data: {comfirm: "Are you sure?"}, class: 'btn btn-danger' %>
+    <% if params[:action] == "edit" %>
+    <div class="row">
+      <div class="col-md-offset-2 col-md-4">
+        <div class="well text-center">
+          <%= link_to "Delete User", user_path(@user), method: :delete, data: {comfirm: "Are you sure?"}, class: 'btn btn-danger' %>
+        </div>
       </div>
     </div>
-  </div>
   <% end %>
 
 </div>
