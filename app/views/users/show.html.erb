@@ -18,7 +18,9 @@
       <dt><b> Last Name </b></dt>
       <dd><%= @user.last_name %></dd>
       <p></p>
-      <dt><b> Email </b></dt>
-      <dd><u><%= mail_to @user.email %></u></dd>
+      <% if @user == current_user %>
+        <dt><b> Email </b></dt>
+        <dd><u><%= mail_to @user.email %></u></dd>
+      <% end %>
     </dl>
 </div>
