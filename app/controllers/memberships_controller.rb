@@ -1,6 +1,10 @@
 class MembershipsController < PrivateController
-  before_action :find_set_project
+  before_action :set_project
+  before_action :set_membership, only: [:destroy, :update]
   before_action :project_auth
+  before_action :ensure_owner, only: [:update]
+  before_action :ensure_owner_self, only: [:destroy]
+  before_action :ensure_owner_present, only: [:update, :destroy]
 
   def index
     @memberships = @project.memberships
@@ -33,7 +37,8 @@ class MembershipsController < PrivateController
   end
 
   def destroy
-    if owner_count(@project) == 1 && @membership.role == 1
+    @membership = @project.memberships.find(params[:id])
+    if owner_count(@project) == 1 && @membership.role == "Owner"
       flash[:danger] = "Projects must have at least one owner"
       redirect_to project_memberships_path(@project.id)
     else
@@ -48,14 +53,15 @@ class MembershipsController < PrivateController
 
   def project_auth
     if current_user.memberships.find_by(project_id: @project.id) == nil
-      flash[:warning] = "You do not have access to that project"
+      flash[:danger] = "You do not have access to that project"
       redirect_to projects_path
     end
   end
 
-  def find_set_project
+  def set_project
     @project = Project.find(params[:project_id])
   end
+
 
   def membership_params
     params.require(:membership).permit(:user_id, :project_id, :role)
