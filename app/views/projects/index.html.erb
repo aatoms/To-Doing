@@ -16,7 +16,7 @@
     </thead>
 
     <tbody>
-    <% @projects.each do |project| %>
+    <% current_user.projects.each do |project| %>
       <tr>
         <td>
           <u><%= link_to project.name, project_path(project) %></u>
