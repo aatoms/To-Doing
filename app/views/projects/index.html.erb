@@ -49,7 +49,7 @@
   </tbody>
   </table>
 
-    <% if @pivotal_projects %>
+    <% if @pivotal_projects && @pivotal_projects != 403 %>
       <h1> Pivotal Tracker Projects </h1>
       <table class='table'>
         <thead>
