@@ -72,7 +72,7 @@
               <% if u.id.present? %>
                 <td> <%= link_to u.user.full_name, user_path(u.user), class: 'pull-left' %> </td>
                 <td> <%= u.role %> </td>
-                <% if current_user.memberships.include?(@membership) %>
+                <% if current_user.id == u.user_id %>
                   <td> <%= link_to "", project_membership_path(@project, u), method: :delete, class:'glyphicon glyphicon-remove' %>
                   <% else %>
                 <td></td>
