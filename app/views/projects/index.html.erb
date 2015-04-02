@@ -69,5 +69,8 @@
        </table>
     <% end %>
 
+    <% if @pivotal_projects == 403 %>
+      <% flash.now[:danger] = "Your tracker token seems to be invalid" %>
+    <% end %>
 
 </div>
