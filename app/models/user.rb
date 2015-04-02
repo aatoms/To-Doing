@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :memberships, :dependent => :destroy
   has_many :projects, through: :memberships
   has_many :comments, :dependent => :nullify
+  
   has_secure_password
 
   def full_name

@@ -2,22 +2,37 @@
 
   <%= form_for @user, html: {class: "form-horizontal"} do |f| %>
     <%= render partial: 'shared/errors', locals: {object: @user} %>
-    <% label_field_types = {
-      first_name: :text_field,
-      last_name: :text_field,
-      email: :email_field,
-      password: :password_field,
-      password_confirmation: :password_field } %>
-    <% label_field_types.each do |label, field| %>
-      <div class="form-group">
-        <div class="col-md-2">
-          <%= f.label label, class: 'control-label' %>
-        </div>
-        <div class='col-md-4'>
-          <%= f.send(field, label, class: 'form-control') %>
-        </div>
+
+    <div class="form-group">
+      <%= f.label :first_name, class: "col-md-2 control-label" %>
+      <div class="col-sm-6">
+      <%= f.text_field :first_name, class: "form-control", placeholder: "First Name" %>
       </div>
-    <% end %>
+    </div>
+    <div class="form-group">
+      <%= f.label :last_name, class: "col-md-2 control-label" %>
+      <div class="col-sm-6">
+      <%= f.text_field :last_name, class: "form-control", placeholder: "Last Name" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :email, class: "col-md-2 control-label" %>
+      <div class="col-sm-6">
+      <%= f.email_field :email, class: "form-control", placeholder: "Email" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :password, class: "col-md-2 control-label" %>
+      <div class="col-sm-6">
+      <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :password_confirmation, class: "col-md-2 control-label" %>
+      <div class="col-sm-6">
+      <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Password Confirmation" %>
+      </div>
+    </div>
 
     <% if current_user.admin == true %>
       <div class='form-group'>
