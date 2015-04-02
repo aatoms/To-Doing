@@ -17,6 +17,21 @@
 
   <tbody>
 
+    <% if current_user.admin == true %>
+      <% @projects.each do |project| %>
+        <tr>
+          <div class='col-md-2'>
+            <td>
+              <u><%= link_to project.name, project_path(project) %></u>
+            </td>
+            <td>
+              <u><%= link_to project.tasks.count, project_tasks_path(project) %></u>
+            </td>
+            <td></td>
+          </div>
+        </tr>
+      <% end %>
+    <% else %>
       <% current_user.projects.each do |project| %>
         <tr>
           <div class='col-md-2'>
@@ -29,7 +44,8 @@
             <td></td>
           </div>
         </tr>
-        <% end %>
+      <% end %>
+    <% end %>
 
   </tbody>
   </table>

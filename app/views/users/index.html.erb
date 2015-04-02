@@ -20,14 +20,14 @@
         <td>
           <%= link_to users.first_name+" "+users.last_name, user_path(users) %>
         </td>
-        <%  if users == current_user || (users.projects & current_user.projects).any? %>
+        <% if users.id == current_user.id || current_user.admin == true %>
           <td><%= mail_to users.email %></td>
         <% else %>
           <td></td>
         <% end %>
         <td>
           <div class= "pull-right">
-            <% if users == current_user %>
+            <% if users.id == current_user.id || current_user.admin == true %>
               <%= link_to "Edit", edit_user_path(users) %>
             <% end %>
           </div>
