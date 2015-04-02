@@ -1,7 +1,7 @@
 class UsersController < PrivateController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :auth
-
+  before_action :current_user_not_permitted, only: [:edit, :update, :destroy]
 
   def index
     @users = User.all
@@ -12,7 +12,6 @@ class UsersController < PrivateController
   end
 
   def show
-    @user = User.find(params[:id])
   end
 
   def create
@@ -26,11 +25,9 @@ class UsersController < PrivateController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:notice] = "User was updated successfully"
       redirect_to user_path
@@ -40,18 +37,26 @@ class UsersController < PrivateController
   end
 
   def destroy
-    user = User.find(params[:id])
-    if current_user == user
+    if current_user == @user
+      @user.destroy
+      flash[:notice] = "User was successfully deleted"
+      redirect_to root_path
       session.clear
+    else
+      @user.destroy
+      flash[:notice] = "User was successfully deleted"
+      redirect_to users_path
     end
-    user.destroy
-    redirect_to users_path, notice: "The user has been successfully deleted"
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+    if current_user.admin
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :admin)
+    else
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+    end
   end
 
   def set_user

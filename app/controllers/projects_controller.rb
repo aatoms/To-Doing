@@ -1,7 +1,7 @@
 class ProjectsController < PrivateController
   before_action :auth
   before_action :set_project, only: [:edit, :show, :update, :destroy]
-  before_action :project_auth, only: [:edit, :show, :update, :destroy]
+  before_action :ensure_member, only: []
   before_action :ensure_owner, only: [:edit, :update, :destroy]
 
   def index
@@ -15,7 +15,7 @@ class ProjectsController < PrivateController
   def create
     @project = Project.new(project_params)
     if @project.save
-      Membership.create!(project_id: @project.id, user_id: current_user.id, role: "Owner")
+      @project.memberships.create!(project_id: @project.id, user_id: current_user.id, role: "Owner")
       flash[:notice] = "Project was successfully created"
       redirect_to project_tasks_path(@project, @task)
     else
@@ -32,7 +32,7 @@ class ProjectsController < PrivateController
   def update
     if @project.update(project_params)
       flash[:notice] = "Project was successfully updated"
-      redirect_to project_path
+      redirect_to project_path(@project)
     else
       render :edit
     end
@@ -48,13 +48,6 @@ class ProjectsController < PrivateController
 
   def set_project
     @project = Project.find(params[:id])
-  end
-
-  def project_auth
-    if current_user.memberships.find_by(project_id: @project.id) == nil
-      flash[:danger] = "You do not have access to that project"
-      redirect_to projects_path
-    end
   end
 
   def project_params
