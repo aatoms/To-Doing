@@ -6,31 +6,37 @@
     <div class="form-group">
       <%= f.label :first_name, class: "col-md-2 control-label" %>
       <div class="col-sm-6">
-      <%= f.text_field :first_name, class: "form-control", placeholder: "First Name" %>
+      <%= f.text_field :first_name, class: "form-control" %>
       </div>
     </div>
     <div class="form-group">
       <%= f.label :last_name, class: "col-md-2 control-label" %>
       <div class="col-sm-6">
-      <%= f.text_field :last_name, class: "form-control", placeholder: "Last Name" %>
+      <%= f.text_field :last_name, class: "form-control" %>
       </div>
     </div>
     <div class="form-group">
       <%= f.label :email, class: "col-md-2 control-label" %>
       <div class="col-sm-6">
-      <%= f.email_field :email, class: "form-control", placeholder: "Email" %>
+      <%= f.email_field :email, class: "form-control" %>
       </div>
     </div>
     <div class="form-group">
       <%= f.label :password, class: "col-md-2 control-label" %>
       <div class="col-sm-6">
-      <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+      <%= f.password_field :password, class: "form-control" %>
       </div>
     </div>
     <div class="form-group">
       <%= f.label :password_confirmation, class: "col-md-2 control-label" %>
       <div class="col-sm-6">
-      <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Password Confirmation" %>
+      <%= f.password_field :password_confirmation, class: "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :tracker_token, class: "col-md-2 control-label" %>
+      <div class="col-sm-6">
+      <%= f.text_field :tracker_token, class: "form-control" %>
       </div>
     </div>
 

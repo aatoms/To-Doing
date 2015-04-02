@@ -20,5 +20,9 @@
         <dt><b> Email </b></dt>
         <dd><u><%= mail_to @user.email %></u></dd>
       <% end %>
+      <% if @user.tracker_token %>
+        <dt> Tracker Token </dt>
+        <dd> <%= @user.show_tracker_token %> </dd>
+      <% end %>
     </dl>
 </div>
