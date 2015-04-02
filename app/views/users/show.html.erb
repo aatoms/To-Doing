@@ -1,15 +1,13 @@
 <div class='container'>
-  <div class='page-header'>
+  <h1 class='page-header'>
     <div class='row'>
       <% if @user == current_user || current_user.admin == true %>
         <%= link_to "Edit", edit_user_path, class: "btn btn-info pull-right margin-top-button" %>
       <% end %>
-      <h1>
         <%= @user.first_name %>
         <%= @user.last_name %>
-      </h1>
     </div>
-  </div>
+  </h1>
 
     <dl class="dl-horizontal">
       <dt><b> First Name </b></dt>

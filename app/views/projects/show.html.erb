@@ -1,12 +1,11 @@
 <div class='container'>
-  <div class='page-header'>
+  <h1 class='page-header'><%= @project.name %>
     <div class='pull-right'>
       <% if Membership.where("project_id= ? AND role= ?", @project.id, "Owner").include?(current_user.memberships.find_by(project_id: @project.id)) || current_user.admin == true%>
         <%= link_to "Edit", edit_project_path, class: 'btn btn-info' %>
       <% end %>
     </div>
-    <h1><%= @project.name %></h1>
-  </div>
+  </h1>
 
   <ol class="breadcrumb">
     <li> <%= link_to "Projects", projects_path %> </li>
