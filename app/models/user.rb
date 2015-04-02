@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
-  def show_tracker_tokenf
+  def show_tracker_token
     plain_text = tracker_token[0,4]
     plain_text + ('*' * (tracker_token.delete plain_text).length)
   end
