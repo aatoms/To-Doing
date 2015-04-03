@@ -25,7 +25,7 @@ class PrivateController < ApplicationController
   def ensure_owner
     if current_user.admin == false && (current_user.memberships.find_by(project_id: @project).role != "Owner")
       flash[:danger] = "You don't have access!"
-      redirect_to projects_path(@project)
+      redirect_to project_path(@project)
     end
   end
 

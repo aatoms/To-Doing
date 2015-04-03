@@ -18,7 +18,7 @@ class UsersController < PrivateController
     @user = User.new(user_params)
     if @user.save
       flash[:notice] = "User was created successfully"
-      redirect_to @user
+      redirect_to user_path(@user)
     else
       render :new
     end

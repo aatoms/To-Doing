@@ -2,7 +2,7 @@ require 'rails_helper'
 
   feature 'Users' do
     before do
-      @user = create_user
+      @user = create_user_1
     end
 
     scenario 'can sign up' do
@@ -15,25 +15,24 @@ require 'rails_helper'
       fill_in :user_password, with: 'password'
       fill_in :user_password_confirmation, with: 'password'
       within('form') {click_on 'Sign Up'}
-      expect(current_path).to eq '/'
+      expect(current_path).to eq new_project_path
       expect(page).to have_content("You have successfully signed up")
       expect(page).to have_content("First Last")
       expect(page).to have_no_content("Sign Up")
     end
 
     scenario 'that are logged in can see projects, tasks, and users' do
-      visit root_path
-      sign_in(@user)
+      visit projects_path
+      sign_in_1(@user)
       click_on 'Projects'
       expect(page).to have_content('Projects')
       click_on 'Users'
       expect(page).to have_content('Users')
     end
 
-
     scenario 'can signout' do
       visit root_path
-      sign_in(@user)
+      sign_in_1(@user)
       click_on 'Sign Out'
       expect(page).to have_content('You have successfully logged out')
       expect(page).to have_no_content('Sign Out')
@@ -41,7 +40,7 @@ require 'rails_helper'
     end
 
     scenario 'can sign in with valid credentials' do
-      sign_in(@user)
+      sign_in_1(@user)
       expect(page).to have_content("You have successfully logged in")
       expect(current_path).to eq projects_path
     end

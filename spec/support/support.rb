@@ -1,4 +1,4 @@
-def sign_in_1(user = create_user_1)
+  def sign_in_1(user = create_user_1)
     visit root_path
     click_on 'Sign In'
     fill_in :email, with: 'austin@example.com'

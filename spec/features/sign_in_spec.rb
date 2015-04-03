@@ -2,7 +2,7 @@ require 'rails_helper'
 
   feature 'Users' do
     before do
-      sign_in
+      sign_in_1
     end
 
     scenario 'logged in users can see project, tasks, and users' do
@@ -24,7 +24,7 @@ require 'rails_helper'
 
     scenario 'Users can sign in with valid credentials' do
       expect(page).to have_content("You have successfully logged in")
-      expect(page).to have_content("first last")
+      expect(page).to have_content("Austin Adams")
       expect(current_path).to eq projects_path
     end
 

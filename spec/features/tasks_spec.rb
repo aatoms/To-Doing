@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Tasks' do
   before do
-    sign_in
+    sign_in_1
     @project1 = Project.create!(name: "Project")
     @task1 = Task.create!(description: 'Task', due_date: '2015-04-10', project_id: @project1.id)
   end
