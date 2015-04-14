@@ -1,0 +1,30 @@
+.columns:before,
+.columns:after {
+  content:"";
+  display:table;
+}
+.columns:after {
+  clear:both;
+}
+
+.column {
+  float: left;
+}
+
+.one.columns .column, .column-one {
+  width: 100%;
+  padding: 10px 10px 0px 10px;
+}
+
+.two.columns .column, .column-two {
+  width: 50%;
+}
+
+.columns.three .column, .column-three {
+  width: 33.33333%;
+  padding: 0px 10px 10px 10px;
+}
+
+.four.columns .column, .column.column-four {
+  width: 25%;
+}

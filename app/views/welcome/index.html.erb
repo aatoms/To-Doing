@@ -1,27 +1,25 @@
 <div class="container">
 
-  <div class="jumbotron">
-    <h1>gCamp</h1>
-    <p>Your life, organized.</p>
-  </div>
+  <div class="column">
+    <div class="column column-one">
+      <div class="jumbotron">
+        <h1>gCamp</h1>
+        <p>Your life, organized.</p>
+      </div>
+    </div>
 
-  <div class="row">
-    <div class="col-md-4">
+    <div class="column column-three">
       <%=image_tag("TABLET.jpg", class: "img-responsive")%>
-      <p class="lead"></p>
     </div>
-    <div class="col-md-4">
+    <div class="column column-three">
       <%=image_tag("HANDS.jpg", class: "img-responsive")%>
-      <p class="lead"></p>
     </div>
-    <div class="col-md-4">
+    <div class="column column-three">
       <%=image_tag("DISTRESSED.jpg", class: "img-responsive")%>
-      <p class="lead"></p>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col-md-4">
+
+    <div class="column column-three">
       <div class="panel panel-primary">
         <div class="panel-heading">
           <h3 class="panel-title">Tasks</h3>
@@ -32,7 +30,7 @@
     </div>
   </div>
 
-  <div class="col-md-4">
+  <div class="column column-three">
     <div class="panel panel-primary">
       <div class="panel-heading">
         <h3 class="panel-title">Permissions</h3>
@@ -43,7 +41,7 @@
     </div>
   </div>
 
-  <div class="col-md-4">
+  <div class="column column-three">
     <div class="panel panel-primary">
       <div class="panel-heading">
         <h3 class="panel-title">Comments</h3>
@@ -56,17 +54,18 @@
       </div>
     </div>
   </div>
-</div>
 
+    <div class="column column-one"
+      <p><%= @quotes_array[0]["quote"]%></p>
+      <p class= text-muted ><em> -<%= @quotes_array[0]["contributor"]%></em></p>
 
-<p><%= @quotes_array[0]["quote"]%></p>
-<p class= text-muted ><em> -<%= @quotes_array[0]["contributor"]%></em></p>
+      <p><%= @quotes_array[1]["quote"]%></p>
+      <p class= text-muted><em> -<%= @quotes_array[1]["contributor"]%></em></p>
 
-<p><%= @quotes_array[1]["quote"]%></p>
-<p class= text-muted><em> -<%= @quotes_array[1]["contributor"]%></em></p>
-
-<p><%= @quotes_array[2]["quote"]%></p>
-<p class= text-muted><em> -<%= @quotes_array[2]["contributor"]%></em></p>
+      <p><%= @quotes_array[2]["quote"]%></p>
+      <p class= text-muted><em> -<%= @quotes_array[2]["contributor"]%></em></p>
+    </div>
+  </div>
 
 
 </div>
