@@ -1,7 +1,7 @@
 <div class="col-sm-12">
   <div class="well col-sm-8 col-sm-offset-2">
     <div class="form-group">
-      <h1 class = "page-header">Sign up for gCamp!</h1>
+      <h1 class = "page-header">Sign up for To-Doing!</h1>
       <%= form_for @user, url: sign_up_path, html: {class: "form-horizontal"} do |f| %>
         <% if @user.errors.any? %>
           <% @user.errors.full_messages.each do |message| %>
