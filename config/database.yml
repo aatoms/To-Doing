@@ -23,7 +23,7 @@ default: &default
 
 development:
   <<: *default
-  database: gCamp_development
+  database: to-Doing_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -57,7 +57,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: gCamp_test
+  database: to-doing_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: gCamp_production
-  username: gCamp
+  database: to-doing_production
+  username: to-doing
   password: <%= ENV['GCAMP_DATABASE_PASSWORD'] %>
