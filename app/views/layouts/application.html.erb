@@ -34,9 +34,6 @@
 
     <%= yield %>
 
-
-
-
       <footer class='container'>
       <hr>
       <% unless current_user %>
@@ -56,8 +53,8 @@
         |
         <%= link_to "Projects", projects_path %>
       <% end %>
-        <%= link_to image_tag('Twitter.png', class: 'link_image'), "https://twitter.com/austileaks" %>
-        <%= link_to image_tag('GitHub.png', class: 'link_image'), "https://github.com/adamsbuilt" %>
+        <%= link_to image_tag('Twitter.png', class: 'link_image'), "https://twitter.com/austileaks", :target=>'_blank' %>
+        <%= link_to image_tag('GitHub.png', class: 'link_image'), "https://github.com/adamsbuilt", :target=>'_blank' %>
       </footer>
       </hr>
     </body>
