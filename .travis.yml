@@ -1,6 +1,9 @@
 language: ruby
 rvm:
-  - 2.2.0
+  - 2.2.5
+env:
+  - DB=postgresql
+cache: bundler
 before_script:
   - cp config/database.yml.travis config/database.yml
   - bundle exec rake db:create
