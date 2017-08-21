@@ -82,4 +82,4 @@ production:
   <<: *default
   database: to-doing_production
   username: to-doing
-  password: <%= ENV['GCAMP_DATABASE_PASSWORD'] %>
+  password: <%= ENV['TO-DOING_DATABASE_PASSWORD'] %>
